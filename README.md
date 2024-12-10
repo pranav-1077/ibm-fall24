@@ -12,7 +12,6 @@ By aligning corresponding street-level imagery with satellite image tiles, the m
 - **LandCover.AI Integration**: Leverages high-quality satellite image tiles from the LandCover.AI dataset for diverse land cover types.
 - **Vision-Language Model Training**: Demonstrates training of a satellite image captioning model with the automatically generated dataset.
 - **End-to-End Workflow**: Includes data preprocessing, alignment pipeline, model training, and evaluation.
-- **Open Source Tools**: Built using Python, PyTorch, and geospatial libraries such as GeoPandas and rasterio for efficient data processing.
 
 ## Methodology
 
