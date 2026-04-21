@@ -16,7 +16,7 @@ The flow proposed in this project reduces end-to-end dataset creation time from 
 
 ## Pipeline
 
-![Pipeline diagram](ibm-fall24-pipeline-img.png)
+![Pipeline diagram](vis/ibm-fall24-pipeline-img.png)
 
 ```
 LandCover.AI TIFs
@@ -67,7 +67,7 @@ All paths, API keys, model names, and hyperparameters live in **`src/config.py`*
 
 The fine-tuned model (BLIP-rsc-5k) produces noticeably more detailed and spatially grounded captions compared to the SOTA baseline.
 
-![Example inference comparison](ibm-fall24-example-img.png)
+![Example inference comparison](vis/ibm-fall24-example-img.png)
 
 ---
 
