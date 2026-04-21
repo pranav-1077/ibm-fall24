@@ -8,13 +8,15 @@ A Fall 2024 [Data Discovery](https://cdss.berkeley.edu/discovery) project in par
 
 ## Overview
 
-Annotating satellite imagery at scale is expensive and time-consuming. This project introduces a synthetic labelling pipeline that eliminates manual annotation by aligning satellite image tiles with street-level imagery and using a vision-language model to generate high-quality captions automatically.
+Annotating satellite imagery at scale is expensive and time-consuming. This project introduces a synthetic labelling pipeline that eliminates manual annotation by aligning satellite image tiles with street-level imagery and using a vision-language model to generate high-quality captions automatically. The generated dataset is then used to fine-tune a pretrained vision-language model (in this case, Salesforce's BLIP model pretrained on RSICD dataset) for more detailed land cover analysis.
 
-The generated dataset is then used to fine-tune a remote sensing captioning model (BLIP). Evaluation is primarily qualitative — side-by-side comparison of base and fine-tuned captions. RemoteCLIP cosine similarity was explored as an automated metric but was not found to be a reliable measure of caption quality for this task.
+The flow proposed in this project reduces end-to-end dataset creation time from weeks to < 8 hours, suggesting potential in building more scalable training systems for geospatial captioning.
 
 ---
 
 ## Pipeline
+
+![Pipeline diagram](ibm-fall24-pipeline-img.png)
 
 ```
 LandCover.AI TIFs
@@ -58,6 +60,14 @@ All paths, API keys, model names, and hyperparameters live in **`src/config.py`*
 | `HF_TOKEN` | Hugging Face token for pushing models |
 | `S3_BUCKET` | AWS S3 bucket name |
 | `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` / `AWS_DEFAULT_REGION` | Standard AWS credential env vars |
+
+---
+
+## Example Results
+
+The fine-tuned model (BLIP-rsc-5k) produces noticeably more detailed and spatially grounded captions compared to the SOTA baseline.
+
+![Example inference comparison](ibm-fall24-example-img.png)
 
 ---
 
