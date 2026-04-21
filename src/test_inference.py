@@ -1,6 +1,7 @@
 """
-Step 6: Evaluate the fine-tuned BLIP model against the base model using
-        RemoteCLIP cosine similarity on the held-out test split.
+Step 6: Qualitatively compare base vs. fine-tuned BLIP captions on the held-out test split.
+        RemoteCLIP cosine similarity is computed as a rough reference signal, but it was not
+        a reliable standalone metric for this task — use generated captions for human review.
 
 Prerequisites:
     pip install datasets transformers torch open_clip_torch huggingface_hub pillow
@@ -90,14 +91,17 @@ def evaluate():
         base_sim = F.cosine_similarity(img_emb, base_emb, dim=-1).item()
         ft_sim = F.cosine_similarity(img_emb, ft_emb, dim=-1).item()
 
-        print(f"  Base cosine sim:       {base_sim:.4f}")
-        print(f"  Fine-tuned cosine sim: {ft_sim:.4f}")
+        # RemoteCLIP cosine similarity — included as a rough reference only;
+        # not a reliable metric for comparing caption quality on this dataset.
+        print(f"  Base cosine sim (ref):       {base_sim:.4f}")
+        print(f"  Fine-tuned cosine sim (ref): {ft_sim:.4f}")
 
         base_total += base_sim
         ft_total += ft_sim
 
     n = len(test_set)
-    print(f"\nAverage cosine similarity — base: {base_total / n:.4f}  |  fine-tuned: {ft_total / n:.4f}")
+    print(f"\nRemoteCLIP cosine sim (reference only) — base: {base_total / n:.4f}  |  fine-tuned: {ft_total / n:.4f}")
+    print("Note: cosine similarity was not found to be a reliable evaluation metric for this task.")
 
 
 if __name__ == "__main__":

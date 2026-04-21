@@ -10,7 +10,7 @@ A Fall 2024 [Data Discovery](https://cdss.berkeley.edu/discovery) project in par
 
 Annotating satellite imagery at scale is expensive and time-consuming. This project introduces a synthetic labelling pipeline that eliminates manual annotation by aligning satellite image tiles with street-level imagery and using a vision-language model to generate high-quality captions automatically.
 
-The generated dataset is then used to fine-tune a remote sensing captioning model (BLIP), and the improvement over the baseline is measured using RemoteCLIP cosine similarity.
+The generated dataset is then used to fine-tune a remote sensing captioning model (BLIP). Evaluation is primarily qualitative — side-by-side comparison of base and fine-tuned captions. RemoteCLIP cosine similarity was explored as an automated metric but was not found to be a reliable measure of caption quality for this task.
 
 ---
 
@@ -40,14 +40,15 @@ LandCover.AI TIFs
 6. finetune_blip.py   — fine-tune BLIP on the synthetic dataset
        │
        ▼
-7. test_inference.py  — evaluate base vs. fine-tuned model via RemoteCLIP cosine similarity
+7. test_inference.py  — side-by-side qualitative comparison of base vs. fine-tuned captions
+                          (RemoteCLIP cosine similarity included as a reference signal only)
 ```
 
 ---
 
 ## Configuration
 
-All paths, API keys, model names, and hyperparameters live in **`config.py`**. Secrets are read from environment variables — never hardcoded.
+All paths, API keys, model names, and hyperparameters live in **`src/config.py`**. Secrets are read from environment variables — never hardcoded. Copy `.env.example` to `.env` and fill in your values.
 
 | Variable | Description |
 |---|---|
@@ -75,22 +76,18 @@ kaggle datasets download -d adrianboguszewski/landcoverai
 unzip landcoverai.zip -d data/lcai_tifs
 ```
 
-Then set your environment variables and run each script in order:
+Copy `.env.example` to `.env`, fill in your credentials, then source it and run each script in order:
 
 ```bash
-export GOOGLE_MAPS_API_KEY=...
-export OPENAI_API_KEY=...
-export HF_TOKEN=...
-export S3_BUCKET=...
-export AWS_ACCESS_KEY_ID=...
-export AWS_SECRET_ACCESS_KEY=...
-export AWS_DEFAULT_REGION=...
+cp .env.example .env
+# edit .env with your values
+source .env
 
-python lcai_pipeline.py
-python blip_inference.py
-python s3_upload.py
-python join_tables.py
-python text_augmentation.py
-python finetune_blip.py
-python test_inference.py
+python src/lcai_pipeline.py
+python src/blip_inference.py
+python src/s3_upload.py
+python src/join_tables.py
+python src/text_augmentation.py
+python src/finetune_blip.py
+python src/test_inference.py
 ```
