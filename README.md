@@ -16,7 +16,6 @@ The flow proposed in this project reduces end-to-end dataset creation time from 
 
 ## Pipeline
 
-![Pipeline diagram](vis/ibm-fall24-pipeline-img.png)
 
 ```
 LandCover.AI TIFs
