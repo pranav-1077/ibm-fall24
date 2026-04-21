@@ -10,7 +10,7 @@ A Fall 2024 [Data Discovery](https://cdss.berkeley.edu/discovery) project in par
 
 Annotating remote sensing imagery at scale is expensive and time-consuming. This project introduces a synthetic labelling pipeline that eliminates manual annotation by aligning remote sensing image tiles with street-level imagery and using a vision-language model to generate high-quality captions automatically. The generated dataset is then used to fine-tune a pretrained vision-language model (in this case, Salesforce's BLIP model pretrained on RSICD dataset) for more detailed land cover analysis.
 
-The flow proposed in this project reduces end-to-end dataset creation time from weeks to < 8 hours, suggesting potential in building more scalable training systems for geospatial captioning.
+The flow proposed in this project reduces end-to-end dataset creation time from weeks to < 5 hours, suggesting potential in building more scalable training systems for geospatial captioning.
 
 ---
 
