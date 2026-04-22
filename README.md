@@ -1,4 +1,4 @@
-# Novel Synthetic Labelling System for Scalable Remote Sensing Captioning
+# Synthetic Labelling System for Scalable Remote Sensing Captioning
 
 A Fall 2024 [Data Discovery](https://cdss.berkeley.edu/discovery) project in partnership with **IBM**, advised by **Ranjan Sinha** and **Karina Kervin**.
 
